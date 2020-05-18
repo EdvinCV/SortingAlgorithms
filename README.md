@@ -5,3 +5,5 @@ This project was made to implement and visualize the most common sorting algorit
 If you want to try this project don't need to install anything, just to be sure to have internet to use SweetAlert.
 
 Enyoj :)
+
+Edvin Calderon.
