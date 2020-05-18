@@ -1,0 +1,131 @@
+body {
+    background-color: black;
+    color: rgb(0 ,255 ,0);
+}
+
+.contenedor {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+    display: table;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    padding: 10px;
+    margin-left: auto;
+    margin-top: auto;
+    border: 4px double rgb(0 ,255 ,0);
+}
+
+h1 { 
+	position: relative; 
+	float: left;
+    font-size: 2.5em;
+}
+
+h1 span {
+    position:absolute;
+    right:0;
+    width:0;
+    border-left: 1px solid rgb(0 ,255 ,0);
+    background-color: black;
+    animation: escribir 3s steps(20) infinite alternate;
+}
+
+.menu {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    padding: 10px;
+    border: 4px double rgb(0 ,255 ,0);
+}
+
+.enteredData {
+    margin-top: 5px;
+    display: none;
+    width: 30%;
+    padding: 10px;
+    border: 4px double rgb(0 ,255 ,0);
+}
+
+.visualization {
+    margin-top: 10px;
+    display: none;
+    width: auto;
+    padding: 10px;
+    border: 4px double rgb(0 ,255 ,0);
+}
+
+.actualData {
+    margin-top: 5px;
+    display: none;
+    width: 30%;
+    padding: 10px;
+    border: 4px double rgb(0 ,255 ,0);
+}
+
+.algs {
+    list-style: none;
+}
+
+.input {
+    background-color: black;
+    color: rgb(0 ,255 ,0);
+    border: 1px solid rgb(0 ,255 ,0);
+}
+
+.btnStart {
+    background-color: black;
+    color: rgb(0 ,255 ,0);
+}
+
+.graph{
+    padding:5px 0 5px 0;
+    width:100%;
+}
+
+.bar {
+    height: 25px;
+    margin-left: 5px;
+    color: white;
+    margin-bottom: 5px;
+    border: 1px solid rgb(0 ,255 ,0);
+    text-align: center;
+    bottom: 0;
+}
+
+.bar::after{
+    content:attr(data-name);
+    margin-left:100%;
+    padding:10px;
+    display:inline-block;
+    white-space:nowrap;
+    transform: rotate(90deg);
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0 ,255 ,0);
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(0 ,255 ,0);
+}
+
+li:hover{
+    color: white;
+    font-size: x-large;
+    list-style: disc;
+}
+
+@keyframes escribir {
+    from { width: 100% }
+    to { width:0 }
+}
