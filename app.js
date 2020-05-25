@@ -4,7 +4,7 @@ const data = document.getElementById("inputData");
 const enteredContainer = document.getElementById("enteredData");
 const visualization = document.getElementById("visualization");
 const graph = document.getElementById("graph");
-const actualData = document.getElementById("actualData");
+const dataDiv = document.getElementById("data");
 let outputData = [];
 // Event Listeners
 eventListeners();
@@ -32,7 +32,7 @@ function start(e){
         // Shows the bars of the data
         visualization.style.display = "block";
         // Shows the current state of the data
-        actualData.style.display = "block";
+        dataDiv.style.display = "block";
         // Insert data to graph
         insertData(data.value);
         sortAlgorithm(outputData);
@@ -66,7 +66,7 @@ function insertData(numbers){
     data.forEach(function(number) {
         let bar = document.createElement('div');
         bar.classList = "bar";
-        let width = parseInt(number) + 10;
+        let width = (2 * parseInt(number) + 10);
         bar.style.width = width + "px";
         bar.textContent = number;
         graph.appendChild(bar);
@@ -79,38 +79,42 @@ function sleep(ms) {
   }
 
 async function sortAlgorithm(numbers){
-    let unorderedData = graph.childNodes;
     let temporal = 0;
-    let temporalGraph;
     let ordered = false;
-    let i = 0;
     let length = numbers.length-1;
-    console.log(length);
-    while(ordered == false){
-        if(numbers[i] > numbers[i+1]){
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 5000,
-                icon: 'success',
-                text: numbers[i] + ' is greater than ' + numbers[i+1] + ' -> CHANGE',
-            });
-            let node1 = unorderedData[i];
-            console.log(node1);
-            temporal = numbers[i];
-            numbers[i] = numbers[i+1];
-            numbers[i+1] = temporal;
+
+    let nodes = graph.childNodes;
+    do {
+        ordered = true;
+        for(let i = 0; i < length; i++) {
+            if(numbers[i] > numbers[i+1]) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    icon: 'success',
+                    title: `${numbers[i]} is greater than ${numbers[i+1]} - CHANGE`,
+                });
+                graph.insertBefore(nodes[i+1], nodes[i]);
+                temporal = numbers[i];
+                numbers[i] = numbers[i+1];
+                numbers[i+1] = temporal;
+                ordered = false;
+                await sleep(2000);
+            } else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    icon: 'success',
+                    title: `${numbers[i]} is less than ${numbers[i+1]} - DONT CHANGE`,
+                });
+            }
         }
-        if(i == length) {
-            i = 0;
-            length--;
-        }
-        else {
-            i++;
-        }
-        if(length == 0) {
-            ordered = true;
-        }
-    }
+        length--;
+    }while(ordered == false);
+    console.log(numbers);
 }
+  
